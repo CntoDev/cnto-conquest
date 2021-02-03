@@ -1,0 +1,52 @@
+class Header {
+    gameType = Coop;
+    minPlayers = 1;
+    maxPlayers = 64;
+};
+
+respawn = 3;
+respawnDialog = 0;
+respawnDelay = 10;
+disabledAI = 1;
+saving = 0;
+
+enableDebugConsole = 1;
+
+corpseManagerMode = 0;
+wreckManagerMode = 0;
+
+class CfgFunctions {
+    class cnto_cq {
+        class persistence {
+            class initPersistence { preInit = 1; };
+            class loadFromProfile;
+            class saveToProfile;
+            class saveToProfileLoop;
+            class loadPlayer;
+            class savePlayer;
+            class respawnPlayer;
+            class getDefaultGear;
+        };
+    };
+};
+
+// TODO: maybe store some configuration here?
+//class CNTOConquest {
+//};
+
+// TODO: see https://community.bistudio.com/wiki/Arma_3:_Communication_Menu
+//class CfgCommunicationMenu {
+//};
+
+// TODO ? .. https://community.bistudio.com/wiki/Description.ext#CfgMusic
+//class CfgMusic {
+//};
+
+class Params {
+	class SaveInterval {
+		title = "How often to autosave (minutes)";
+		values[] = { 5, 10, 30, 60, 240, 10000000 };
+		texts[] = { "5", "10", "30", "60", "240", "never" };
+		default = 10;
+	};
+};
