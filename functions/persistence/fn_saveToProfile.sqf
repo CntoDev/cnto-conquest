@@ -2,12 +2,15 @@
  * save runtime data to server's profileNamespace
  */
 
-// TODO: this actually doesn't save players, because players are saved
-//       to the global variable only on disconnect, this function only
-//       saves global variables to disk -- this may be somewhat counter
-//       to player expectations and could cause issues when server crashes
-//        --> maybe make savePlayer compatible with this func & move corpse
-//            deletion logic outside it somehow?
+/* save players to cnto_cq_saved_players */
+{
+    private _uid = getPlayerUID _x;
+    if (_uid isNotEqualTo "") then {
+        private _old = cnto_cq_saved_players getOrDefault [_uid, []];
+        private _new = [_unit, _old] call cnto_cq_fnc_savePlayer;
+        cnto_cq_saved_players set [_uid, _new];
+    };
+} forEach allPlayers;
 
 /* see loadFromProfile */
 private _data = [

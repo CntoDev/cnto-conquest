@@ -11,17 +11,9 @@ if (isServer) then {
     addMissionEventHandler ["HandleDisconnect", {
         params ["_unit", "_id", "_uid", "_name"];
         if (isNull _unit) exitWith {};
-        cnto_cq_saved_players params ["_keys", "_values"];
-        private _index = _keys find _uid;
-        if (_index != -1) then {
-            _values set [
-                _index,
-                [_unit, _values select _index] call cnto_cq_fnc_savePlayer
-            ];
-        } else {
-            _keys pushBack _uid;
-            _values pushBack ([_unit, []] call cnto_cq_fnc_savePlayer);
-        };
+        private _old = cnto_cq_saved_players getOrDefault [_uid, []];
+        private _new = [_unit, _old, true] call cnto_cq_fnc_savePlayer;
+        cnto_cq_saved_players set [_uid, _new];
         publicVariable "cnto_cq_saved_players";
         false;
     }];
@@ -32,24 +24,12 @@ if (isServer) then {
     if (!hasInterface) exitWith {};
     waitUntil { !isNull player };
     waitUntil { !isNil "cnto_cq_saved_players" };
-    cnto_cq_saved_players params ["_keys", "_values"];
-    private _index = _keys find (getPlayerUID player);
-    if (_index != -1) then {
-        private _data = _values select _index;
-        [player, _data] call cnto_cq_fnc_loadPlayer;
-    } else {
-        [player, []] call cnto_cq_fnc_loadPlayer;
-    };
+    private _data = cnto_cq_saved_players getOrDefault [getPlayerUID player, []];
+    [player, _data] call cnto_cq_fnc_loadPlayer;
 
     player addEventHandler ["Respawn", {
         params ["_unit", "_corpse"];
-        cnto_cq_saved_players params ["_keys", "_values"];
-        private _index = _keys find (getPlayerUID _unit);
-        if (_index != -1) then {
-            private _data = _values select _index;
-            [_unit, _data] call cnto_cq_fnc_respawnPlayer;
-        } else {
-            [_unit, []] call cnto_cq_fnc_respawnPlayer;
-        };
+        private _data = cnto_cq_saved_players getOrDefault [getPlayerUID _unit, []];
+        [_unit, _data] call cnto_cq_fnc_respawnPlayer;
     }];
 };

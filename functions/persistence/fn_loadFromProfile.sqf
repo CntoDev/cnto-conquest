@@ -34,12 +34,12 @@ if (!isNil "_data") then {
 } else {
 
     /* defaults on new game */
-    cnto_cq_saved_players = [[],[]];
+    cnto_cq_saved_players = createHashMap;
     cnto_cq_saved_renown = 0;
     cnto_cq_saved_fortify_credits = 0;
     cnto_cq_saved_fortify_objects = [];
-    cnto_cq_saved_locations = [[],[]];
-    cnto_cq_saved_bases = [[],[]];
+    cnto_cq_saved_locations = createHashMap;
+    cnto_cq_saved_bases = createHashMap;
 
 };
 
