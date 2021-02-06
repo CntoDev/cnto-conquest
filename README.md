@@ -7,9 +7,9 @@ Conquest is a slow and methodical gamemode of supply, reputation, and strategy. 
 You are a recruit newly drafted from the Takistani National Police into a new military unit being assembled by the Takistani National Army. The Northwestern Takistanis religious extremists have resented the secular Takistani government - which is supported by the NATO coalition - for some time now, and have begun an insurrection across the country. While the army fights a frontline war without, it is your job to begin your patrols and conquer the enemy within.
 
 ## The Game Loop
-CNTO will begin as ex-police in a lawless land with the task of forming a functioning military police unit, a FOB, and ridding Northern Takistan of extremists. The game mode begins with choosing a base location and building the first FOB - the new recruits have just enough cash to build a barracks and a flag pole. From there, tasks are aplenty: they range from simple patrols to assaulting known extremist outposts. Other tasks, such as helping the locals and respecting their land will help as well, but more importantly earn you renown in the eyes of NATO.
+CNTO will begin as ex-police in a lawless land with the task of forming a functioning military police unit, a FOB, and ridding Northern Takistan of extremists. The game mode begins with choosing a base location and building the first FOB - the new recruits have just enough cash to build a barracks and a flag pole. From there, tasks are aplenty: they range from simple patrols to assaulting known extremist outposts. Other tasks, such as helping the locals and respecting their land will help as well, but more importantly earn you **renown** in the eyes of NATO.
 
-Through the spending of supplies and earning enough renown, players can unlock new gear and weapons over time, or have their commander buy extra firepower such as transportation, artillery fire support, or even NATO air support. Death is permanent, and recruits are in short supply. Each village that is liberated, helped, or simply likes you can provide fresh recruits that will bolster your ranks as garrison forces or active elements (i.e. players respawns). The game ends once Anizay is back under Takistani control.
+Through the spending of supplies and earning enough **renown**, players can unlock new gear and weapons over time, or have their commander buy extra firepower such as transportation, artillery fire support, or even NATO air support. Death is permanent, and recruits are in short supply. Each village that is liberated, helped, or simply likes you can provide fresh recruits that will bolster your ranks as garrison forces or active elements (i.e. players respawns). The game ends once Anizay is back under Takistani control.
 
 ## The Map
 Anizay will act as the Northern region of Takistan. It is here that insurgents have made a foothold by appealing to the rural population through extremist religious beliefs and acting against government policies that have left much of this arid region underdeveloped.
@@ -39,7 +39,7 @@ Supply is used for:
 - Enabling emplacements such as turrets, mortars, or AA
 
 ## Personal Gear
-Through conquering the map and taking back territory for the government, but also by helping the locals, will raise your NATO renown. You will also personally attain higher ranks over time (so long as you don’t die).
+Through conquering the map and taking back territory for the government, but also by helping the locals, will raise your NATO **renown**. You will also personally attain higher ranks over time (so long as you don’t die).
 
 Acquiring new personal gear requires the following:
 - Supply to pay for the gear
@@ -71,7 +71,7 @@ CNTO Conquest uses global vars to represent state of the world. Those variables 
 
 `cnto_cq_saved_fortify_credits` - represents metadata about **Fortify Credits**.
 
-`cnto_cq_saved_fortify_objects` - represents metadata about all fortification objects build by players.
+`cnto_cq_saved_fortify_objects` - represents metadata about all fortification objects built by players.
 
 `cnto_cq_saved_locations` - represents **Locations** (control points) metadata.
 
