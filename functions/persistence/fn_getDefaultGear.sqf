@@ -20,4 +20,4 @@
  * different roles different default loadout
  */
 
-[["SMG_03C_TR_camo","","acc_pointer_IR","optic_Hamr",["50Rnd_570x28_SMG_03",50],[],""],["launch_MRAWS_sand_F","","","",[],[],""],["hgun_Pistol_heavy_01_F","","","",["11Rnd_45ACP_Mag",11],[],""],["U_OrestesBody",[["FirstAidKit",1],["Chemlight_green",1,1],["11Rnd_45ACP_Mag",1,11]]],["V_PlateCarrier1_tna_F",[["HandGrenade",2,1],["SmokeShell",1,1],["SmokeShellGreen",1,1],["Chemlight_green",1,1],["50Rnd_570x28_SMG_03",2,50],["11Rnd_45ACP_Mag",2,11]]],["O_GMG_01_weapon_F",[]],"H_Cap_red","G_Bandanna_aviator",["Laserdesignator","","","",[],[],""],["","I_UavTerminal","ItemRadio","","","O_NVGoggles_ghex_F"]];
+[["rhs_weap_akm","rhs_acc_dtkakm","","",["rhs_30Rnd_762x39mm",30],[],""],[],[],["UK3CB_TKP_B_U_CombatUniform_TAN",[["ACE_fieldDressing",4],["ACE_tourniquet",2]]],["V_BandollierB_blk",[["rhs_30Rnd_762x39mm",5,30]]],[],"UK3CB_TKP_O_H_Patrolcap_Blk","",[],["ItemMap","","","ItemCompass","ItemWatch",""]];
