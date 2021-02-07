@@ -16,36 +16,58 @@ if (!isNil "_data") then {
     /* metadata for players, one array for idx, another for values */
     cnto_cq_saved_players = _data select 0;
 
-    /* global renown value shared by everyone */
-    cnto_cq_saved_renown = _data select 1;
-
     /* global ACEX fortify credits (assuming players share one side) */
-    cnto_cq_saved_fortify_credits = _data select 2;
+    cnto_cq_saved_fortify_credits = _data select 1;
 
-    /* saved ACEX fortify placed objects as [classname,PositionASL] */
-    cnto_cq_saved_fortify_objects = _data select 3;
+    /* saved ACEX fortify placed objects */
+    cnto_cq_saved_fortify_objects = _data select 2;
 
-    /* map locations and their metadata, indexed by 'text <loc>' */
-    cnto_cq_saved_locations = _data select 4;
-
-    /* player bases, indexed by their name (given by players) */
-    cnto_cq_saved_bases = _data select 5;
+    /* global renown value shared by everyone */
+    cnto_cq_saved_renown = _data select 3;
 
 } else {
 
     /* defaults on new game */
     cnto_cq_saved_players = createHashMap;
-    cnto_cq_saved_renown = 0;
     cnto_cq_saved_fortify_credits = 0;
     cnto_cq_saved_fortify_objects = [];
-    cnto_cq_saved_locations = createHashMap;
-    cnto_cq_saved_bases = createHashMap;
+    cnto_cq_saved_renown = 0;
 
 };
 
+/* don't broadcast variables not directly used by mission scripts */
 publicVariable "cnto_cq_saved_players";
+//publicVariable "cnto_cq_saved_fortify_credits";
+//publicVariable "cnto_cq_saved_fortify_objects";
 publicVariable "cnto_cq_saved_renown";
-publicVariable "cnto_cq_saved_fortify_credits";
-publicVariable "cnto_cq_saved_fortify_objects";
-publicVariable "cnto_cq_saved_locations";
-publicVariable "cnto_cq_saved_bases";
+
+/*
+ * set up a helper variable for tracking ACEX Fortify placed objects
+ * since ACEX doesn't keep this list itself and there's no easy way
+ * of getting these dynamically, other than iterating over thousands
+ * of nearObjects
+ */
+cnto_cq_acex_fortify_objects_transient = [];
+["acex_fortify_objectPlaced", {
+    params ["_player", "_side", "_obj"];
+    cnto_cq_acex_fortify_objects_transient pushBack _obj;
+}] call CBA_fnc_addEventHandler;
+["acex_fortify_objectDeleted", {
+    private _idx = cnto_cq_acex_fortify_objects_transient find _obj;
+    cnto_cq_acex_fortify_objects_transient deleteAt _idx;
+}] call CBA_fnc_addEventHandler;
+
+0 = [] spawn {
+    waitUntil { !isNil "BIS_fnc_init" };
+
+    /* load ACEX budget */
+    [west, cnto_cq_saved_fortify_credits, false] call acex_fortify_fnc_updateBudget;
+
+    /* spawn ACEX fortify buildings */
+    {
+        _x params ["_classname", "_pos", "_vectordir", "_vectorup"];
+        private _obj = createVehicle [_classname, _pos, [], 0, "CAN_COLLIDE"];
+        _obj setVectorDirAndUp [_vectordir, _vectorup];
+        ["acex_fortify_objectPlaced", [objNull, west, _obj]] call CBA_fnc_globalEvent; 
+    } forEach cnto_cq_saved_fortify_objects;
+};

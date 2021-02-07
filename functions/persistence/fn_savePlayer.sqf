@@ -20,16 +20,17 @@ params ["_unit", "_saved", ["_disconnect",false]];
 if (isNull _unit) exitWith {};
 _saved params ["_loadout", "_traits"];
 
-private _is_stable = { true };
-if (!isNil "ace_medical_status_fnc_hasStableVitals") then {
-    _is_stable = ace_medical_status_fnc_hasStableVitals;
-};
 
 _loadout = getUnitLoadout [_unit, false];
 
 _traits = getAllUnitTraits _unit;
 
+
 if (_disconnect) then {
+    private _is_stable = { true };
+    if (!isNil "ace_medical_status_fnc_isInStableCondition") then {
+        _is_stable = ace_medical_status_fnc_isInStableCondition;
+    };
     /*
      * if alive, keep loadout saved above and delete body,
      * if dead, save empty loadout and keep body

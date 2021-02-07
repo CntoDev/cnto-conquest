@@ -33,3 +33,14 @@ if (isServer) then {
         [_unit, _data] call cnto_cq_fnc_respawnPlayer;
     }];
 };
+
+/* register manual save chat command */
+["save", {
+    {
+        cnto_cq_save_interval_wakeup = time + cnto_cq_save_interval;
+        [] call cnto_cq_fnc_saveToProfile;
+        "Saved." remoteExec ["systemChat"];
+    } remoteExec ["call", 2];
+}, "admin"] call CBA_fnc_registerChatCommand;
+
+// TODO: a "revert" chat command to decrease save version?

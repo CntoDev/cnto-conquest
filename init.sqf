@@ -1,5 +1,5 @@
 // acex fortify parameters
-[west, 200, [
+[west, 0, [
 
 	["TK_GUE_WarfareBBarracks_Base_EP1", 100], 
 	["Land_BagBunker_Large_F", 75], 

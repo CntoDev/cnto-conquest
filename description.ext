@@ -52,6 +52,7 @@ class Params {
 	};
 };
 
+
 /*──────────────────────────────────────────────────────┐
 │   Author: Connor                                      │
 │   Steam:  https://steamcommunity.com/id/_connor       │
@@ -59,11 +60,8 @@ class Params {
 │                                                       │
 │   Please do not modify or remove this comment block   │
 └──────────────────────────────────────────────────────*/
-
-
 #include "cau\userinputmenus\systems\_macros.inc"
 #include "cau\userinputmenus\systems\_defines.inc"
-
 #include "cau\userinputmenus\controls.cpp"
 #include "cau\userinputmenus\systems\displayColorPicker.cpp"
 #include "cau\userinputmenus\systems\displayGuiMessage.cpp"
