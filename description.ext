@@ -28,6 +28,14 @@ class CfgFunctions {
             class respawnPlayer;
             class getDefaultGear;
         };
+        class ai {
+            class initAI { preInit = 1; };
+            class createEnemyForces;
+            class createFriendlyForces;
+        };
+        class location {
+            class getLocations;
+        };
     };
 };
 
@@ -66,7 +74,10 @@ class CNTOConquest {
     };
     class Locations {
         class TownDefault {
-            marker = "marker_town_1"; // marker with that name must exist in the mission, it represents the town itself
+            scope = 0; // 0 - can't be used in mission, 1 - can be used in mission
+            marker = ""; // marker with that name must exist in the mission, it represents the town itself
+            displayName = ""; // Location display name, used in communications
+            owner = 0; // 0 - enemy, 1 - friendly
             threatLevel = 1; // threatLevel of Enemy force
             minUnits = 1; // minimum amount of spawned unit groups
             maxUnits = 3; // maximum amount of spawned unit groups
@@ -74,13 +85,25 @@ class CNTOConquest {
             onCapture = ""; // callback that gets executed on capture, if you want some special behavior
         };
         class Anizay : TownDefault {
+            scope = 1;
             marker = "marker_anizay";
+            displayName = "Anizay";
             threatLevel = 3;
             minUnits = 5;
             maxUnits = 10;
             size = 500;
             onCapture = "'EveryoneWon' call BIS_fnc_endMissionServer";
         };
+        class SmallTown : TownDefault {
+            scope = 1;
+            marker = "marker_smalltown";
+            displayName = "Small town";
+            threatLevel = 1;
+            minUnits = 1;
+            maxUnits = 2;
+            size = 100;
+            onCapture = "";
+        };        
     };
 };
 
