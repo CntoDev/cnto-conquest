@@ -31,9 +31,58 @@ class CfgFunctions {
     };
 };
 
-// TODO: maybe store some configuration here?
-//class CNTOConquest {
-//};
+class CNTOConquest {
+    class Enemy {
+        // Base class for all Enemy classes, contains default values. Inherit from this class to enable future expansions.
+        class InsurgentBase {
+            cfgGroupsPath = ''; // path to CfgGroups
+            threatLevel = 1; // higher threatLevel for more difficult objectives
+            init = ""; // callback that can be executed on unit spawn for special behavior
+        };
+        class InsurgentSquad : InsurgentBase {
+            cfgGroupsPath = 'configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> "OIA_InfSquad"';
+            threatLevel = 2;
+        };
+        class InsurgentFireTeam : InsurgentBase {
+            cfgGroupsPath = 'configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> "OIA_InfTeam"';
+        };
+    };
+    class Friendly {
+        // Base class for all Friendly classes, contains default values. Inherit from this class to enable future expansions.
+        class TnaBase {
+            cfgGroupsPath = ''; // path to CfgGroups
+            supplyCost = 10; // cost in supply
+            renownTier = 1; // renown tier in which unit is available for purchase
+            init = ""; // callback that can be executed on unit spawn for special behavior
+        };
+        class TnaFireTeam : TnaBase {
+            cfgGroupsPath = 'configfile >> "CfgGroups" >> "West" >> "BLU_F" >> "Infantry" >> "BUS_InfTeam"';
+        };
+        class TnaSquad : TnaBase {
+            cfgGroupsPath = 'configfile >> "CfgGroups" >> "West" >> "BLU_F" >> "Infantry" >> "BUS_InfSquad"';
+            supplyCost = 15;
+            renownTier = 2;
+        };
+    };
+    class Locations {
+        class TownDefault {
+            marker = "marker_town_1"; // marker with that name must exist in the mission, it represents the town itself
+            threatLevel = 1; // threatLevel of Enemy force
+            minUnits = 1; // minimum amount of spawned unit groups
+            maxUnits = 3; // maximum amount of spawned unit groups
+            size = 100; // area radius in which units are spawned. Expressed in meters.
+            onCapture = ""; // callback that gets executed on capture, if you want some special behavior
+        };
+        class Anizay : TownDefault {
+            marker = "marker_anizay";
+            threatLevel = 3;
+            minUnits = 5;
+            maxUnits = 10;
+            size = 500;
+            onCapture = "'EveryoneWon' call BIS_fnc_endMissionServer";
+        };
+    };
+};
 
 // TODO: see https://community.bistudio.com/wiki/Arma_3:_Communication_Menu
 //class CfgCommunicationMenu {
