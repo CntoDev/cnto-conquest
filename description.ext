@@ -32,6 +32,7 @@ class CfgFunctions {
             class initAI { preInit = 1; };
             class createEnemyForces;
             class createFriendlyForces;
+            class createEnemyGroup;
         };
         class location {
             class getLocations;
@@ -43,31 +44,39 @@ class CNTOConquest {
     class Enemy {
         // Base class for all Enemy classes, contains default values. Inherit from this class to enable future expansions.
         class InsurgentBase {
-            cfgGroupsPath = ''; // path to CfgGroups
+            scope = 0; // 0 - can't be used, 1 - can
+            cfgGroupsPath = ""; // path to CfgGroups
             threatLevel = 1; // higher threatLevel for more difficult objectives
             init = ""; // callback that can be executed on unit spawn for special behavior
         };
         class InsurgentSquad : InsurgentBase {
-            cfgGroupsPath = 'configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> "OIA_InfSquad"';
+            scope = 1;
+            cfgGroupsPath = "configfile >> 'CfgGroups' >> 'East' >> 'OPF_F' >> 'Infantry' >> 'OIA_InfSquad'";
             threatLevel = 2;
         };
         class InsurgentFireTeam : InsurgentBase {
-            cfgGroupsPath = 'configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> "OIA_InfTeam"';
+            scope = 1;
+            cfgGroupsPath = "configfile >> 'CfgGroups' >> 'East' >> 'OPF_F' >> 'Infantry' >> 'OIA_InfTeam'";
         };
+        class InsurgentMotorizedPatrol : InsurgentBase {
+            scope = 1;
+            cfgGroupsPath = "configfile >> 'CfgGroups' >> 'East' >> 'OPF_F' >> 'Motorized_MTP' >> 'OIA_MotInf_MGTeam'";
+            threatLevel = 3;
+        };        
     };
     class Friendly {
         // Base class for all Friendly classes, contains default values. Inherit from this class to enable future expansions.
         class TnaBase {
-            cfgGroupsPath = ''; // path to CfgGroups
+            cfgGroupsPath = ""; // path to CfgGroups
             supplyCost = 10; // cost in supply
             renownTier = 1; // renown tier in which unit is available for purchase
             init = ""; // callback that can be executed on unit spawn for special behavior
         };
         class TnaFireTeam : TnaBase {
-            cfgGroupsPath = 'configfile >> "CfgGroups" >> "West" >> "BLU_F" >> "Infantry" >> "BUS_InfTeam"';
+            cfgGroupsPath = "configfile >> 'CfgGroups' >> 'West' >> 'BLU_F' >> 'Infantry' >> 'BUS_InfTeam'";
         };
         class TnaSquad : TnaBase {
-            cfgGroupsPath = 'configfile >> "CfgGroups" >> "West" >> "BLU_F" >> "Infantry" >> "BUS_InfSquad"';
+            cfgGroupsPath = 'configfile >> 'CfgGroups' >> 'West' >> 'BLU_F' >> 'Infantry' >> 'BUS_InfSquad'';
             supplyCost = 15;
             renownTier = 2;
         };
