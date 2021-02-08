@@ -31,8 +31,10 @@ class CfgFunctions {
         class ai {
             class initAI { preInit = 1; };
             class createEnemyForces;
-            class createFriendlyForces;
             class createEnemyGroup;
+            class createFriendlyForces;
+            class createFriendlyGroup;            
+            class getFriendlyForces;
         };
         class location {
             class getLocations;
@@ -67,16 +69,19 @@ class CNTOConquest {
     class Friendly {
         // Base class for all Friendly classes, contains default values. Inherit from this class to enable future expansions.
         class TnaBase {
+            scope = 0; // 0 - not spawned ever, 1 - spawned
             cfgGroupsPath = ""; // path to CfgGroups
             supplyCost = 10; // cost in supply
             renownTier = 1; // renown tier in which unit is available for purchase
             init = ""; // callback that can be executed on unit spawn for special behavior
         };
         class TnaFireTeam : TnaBase {
+            scope = 1;
             cfgGroupsPath = "configfile >> 'CfgGroups' >> 'West' >> 'BLU_F' >> 'Infantry' >> 'BUS_InfTeam'";
         };
         class TnaSquad : TnaBase {
-            cfgGroupsPath = 'configfile >> 'CfgGroups' >> 'West' >> 'BLU_F' >> 'Infantry' >> 'BUS_InfSquad'';
+            scope = 1;
+            cfgGroupsPath = "configfile >> 'CfgGroups' >> 'West' >> 'BLU_F' >> 'Infantry' >> 'BUS_InfSquad'";
             supplyCost = 15;
             renownTier = 2;
         };
@@ -112,7 +117,17 @@ class CNTOConquest {
             maxUnits = 2;
             size = 100;
             onCapture = "";
-        };        
+        };
+        class FriendlyTown: TownDefault {
+            scope = 1;
+            marker = "marker_friendly";
+            displayName = "Friendly town";
+            owner = 1;
+            threatLevel = 1;
+            minUnits = 1;
+            maxUnits = 2;
+            size = 200;
+        };
     };
 };
 
