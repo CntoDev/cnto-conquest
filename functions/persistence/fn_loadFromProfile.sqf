@@ -24,6 +24,12 @@ if (!isNil "_data") then {
 
     /* global renown value shared by everyone */
     cnto_cq_saved_renown = _data select 3;
+    
+    /* ownership of locations */
+    cnto_cq_saved_locations = _data select 4;
+    
+    /* purchased friendly forces */
+    cnto_cq_saved_friendly_forces = _data select 5;
 
 } else {
 
@@ -32,6 +38,8 @@ if (!isNil "_data") then {
     cnto_cq_saved_fortify_credits = 0;
     cnto_cq_saved_fortify_objects = [];
     cnto_cq_saved_renown = 0;
+    cnto_cq_saved_locations = [];
+    cnto_cq_saved_friendly_forces = [];
 
 };
 
