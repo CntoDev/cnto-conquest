@@ -38,6 +38,7 @@ class CfgFunctions {
         };
         class location {
             class getLocations;
+            class initLocations;
         };
     };
 };
