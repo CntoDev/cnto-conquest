@@ -76,3 +76,5 @@ CNTO Conquest uses global vars to represent state of the world. Those variables 
 `cnto_cq_saved_locations` - represents **Locations** (control points) metadata.
 
 `cnto_cq_saved_friendly_forces` - represents saved friendly forces groups.
+
+`cnto_cq_saved_supply` - represents team Supply points.

@@ -35,6 +35,7 @@ class CfgFunctions {
             class createFriendlyGroup;            
             class getFriendlyForces;
             class initFriendlyForces;
+            class purchaseFriendlyGroup;
         };
         class location {
             class getLocations;
@@ -48,21 +49,25 @@ class CNTOConquest {
         // Base class for all Enemy classes, contains default values. Inherit from this class to enable future expansions.
         class InsurgentBase {
             scope = 0; // 0 - can't be used, 1 - can
+            displayName = ""; // name of the unit displayed on the screen
             cfgGroupsPath = ""; // path to CfgGroups
             threatLevel = 1; // higher threatLevel for more difficult objectives
             init = ""; // callback that can be executed on unit spawn for special behavior
         };
         class InsurgentSquad : InsurgentBase {
             scope = 1;
+            displayName = "Insurgent Squad";
             cfgGroupsPath = "configfile >> 'CfgGroups' >> 'East' >> 'OPF_F' >> 'Infantry' >> 'OIA_InfSquad'";
             threatLevel = 2;
         };
         class InsurgentFireTeam : InsurgentBase {
             scope = 1;
+            displayName = "Insurgent Fire Team";
             cfgGroupsPath = "configfile >> 'CfgGroups' >> 'East' >> 'OPF_F' >> 'Infantry' >> 'OIA_InfTeam'";
         };
         class InsurgentMotorizedPatrol : InsurgentBase {
             scope = 1;
+            displayName = "Insurgent Motorized Patrol";
             cfgGroupsPath = "configfile >> 'CfgGroups' >> 'East' >> 'OPF_F' >> 'Motorized_MTP' >> 'OIA_MotInf_MGTeam'";
             threatLevel = 3;
         };        
@@ -71,6 +76,7 @@ class CNTOConquest {
         // Base class for all Friendly classes, contains default values. Inherit from this class to enable future expansions.
         class TnaBase {
             scope = 0; // 0 - not spawned ever, 1 - spawned
+            displayName = ""; // name displayed on the screen
             cfgGroupsPath = ""; // path to CfgGroups
             supplyCost = 10; // cost in supply
             renownTier = 1; // renown tier in which unit is available for purchase
@@ -78,10 +84,12 @@ class CNTOConquest {
         };
         class TnaFireTeam : TnaBase {
             scope = 1;
+            displayName = "TNA Fire Team";
             cfgGroupsPath = "configfile >> 'CfgGroups' >> 'West' >> 'BLU_F' >> 'Infantry' >> 'BUS_InfTeam'";
         };
         class TnaSquad : TnaBase {
             scope = 1;
+            displayName = "TNA Squad";
             cfgGroupsPath = "configfile >> 'CfgGroups' >> 'West' >> 'BLU_F' >> 'Infantry' >> 'BUS_InfSquad'";
             supplyCost = 15;
             renownTier = 2;

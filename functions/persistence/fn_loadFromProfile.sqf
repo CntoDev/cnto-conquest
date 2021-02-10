@@ -31,6 +31,9 @@ if (!isNil "_data") then {
     /* purchased friendly forces */
     cnto_cq_saved_friendly_forces = _data select 5;
 
+    /* team supply */
+    cnto_cq_saved_supply = _data select 6;
+
 } else {
 
     /* defaults on new game */
@@ -40,6 +43,7 @@ if (!isNil "_data") then {
     cnto_cq_saved_renown = 0;
     cnto_cq_saved_locations = call cnto_cq_fnc_initLocations; // locations must be initialized before forces
     cnto_cq_saved_friendly_forces = call cnto_cq_fnc_initFriendlyForces;
+    cnto_cq_saved_supply = 0;
 
 };
 

@@ -29,7 +29,8 @@ private _data = [
     cnto_cq_saved_fortify_objects,
     cnto_cq_saved_renown,
     cnto_cq_saved_locations,
-    cnto_cq_saved_friendly_forces
+    cnto_cq_saved_friendly_forces,
+    cnto_cq_saved_supply
 ];
 
 /* maintain a circular buffer of 10 saves */
