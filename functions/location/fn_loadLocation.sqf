@@ -1,6 +1,6 @@
 params ["_location"];
 /*
-Load location into mission from trigger if players are closeDialog
+Load location into mission from trigger if players are close
 */
 
 private _locationType = _location getVariable ["cnto_cq_locationType"];
