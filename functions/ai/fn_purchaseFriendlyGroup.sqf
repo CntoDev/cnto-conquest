@@ -4,7 +4,10 @@ if (!isServer) exitWith {};
 params ["_transactionId", "_locationMarker", "_selectedFriendlyClass"];
 
 /* Lock supply for transaction */
-waitUntil {isNil "cnto_cq_supplyTransactionOngoing"};
+if (!isNil "cnto_cq_supplyTransactionOngoing") exitWith { 
+	["cnto_friendlyGroupPurchaseFailed", [_transactionId, "Armory can handle only one transaction at the time."]] call CBA_fnc_globalEvent;
+};
+
 cnto_cq_supplyTransactionOngoing = true;
 
 /* Check if enough Supply available */
@@ -19,7 +22,7 @@ private _cost = getNumber (_class >> "supplyCost");
 
 /* If not enough funds, publish event and exit */
 if (cnto_cq_saved_supply - _cost < 0) exitWith {
-	["cnto_friendlyGroupPurchaseFailed", [_transactionId]] call CBA_fnc_globalEvent;
+	["cnto_friendlyGroupPurchaseFailed", [_transactionId, "Not enough supply."]] call CBA_fnc_globalEvent;
 };
 
 /* Deduce cost from team supply */
@@ -27,14 +30,7 @@ private _newSupply = cnto_cq_saved_supply - _cost;
 
 /* Create friendly group */
 private _location = (call cnto_cq_fnc_getLocations) get _locationMarker;
-private _group = [getMarkerPos _locationMarker, _location select 5, _class] call cnto_cq_fnc_createFriendlyGroup;
-
-/* Assign patrol task to new group */
-_group setSpeedMode "LIMITED";
-_group setFormation "COLUMN";
-_group setBehaviour "SAFE";
-[_group] call CBA_fnc_taskPatrol;
-_group enableDynamicSimulation true;
+private _group = [_locationMarker, _location select 5, _class] call cnto_cq_fnc_createFriendlyGroup;
 
 /* Store new new Supply */
 cnto_cq_saved_supply = _newSupply;
