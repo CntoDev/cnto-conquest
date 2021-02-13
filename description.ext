@@ -31,26 +31,32 @@ class CfgFunctions {
             class initAI { preInit = 1; };
             class createEnemyForces;
             class createEnemyGroup;
-            class createFriendlyForces;
-            class createFriendlyGroup;            
+            class createFriendlyGroup;
             class getFriendlyForces;
-            class initFriendlyForces;
             class purchaseFriendlyGroup;
+            class refreshAI;
         };
         class location {
             class getLocations;
             class initLocations;
+        };
+        class customAi {
+            class defaultCreateIf;
+            class defaultDestroyIf;
         };
     };
 };
 
 class CNTOConquest {
     class AIGroup {
-
+        position[] = {}; // last unit position
+        attachedToMarker = ""; // which location unit is attached to (marker name)
+        createIf = "_this call cnto_cq_fnc_defaultCreateIf"; // defines create (spawn) conditional action, _this = [unit]
+        destroyIf = "_this call cnto_cq_fnc_defaultDestroyIf"; // defines destroy conditional action, _this = [unit]
     };
     class Enemy {
         // Base class for all Enemy classes, contains default values. Inherit from this class to enable future expansions.
-        class Insurgent {
+        class Insurgent : AIGroup {
             scope = 0; // 0 - can't be used, 1 - can
             displayName = ""; // name of the unit displayed on the screen
             cfgGroupsPath = ""; // path to CfgGroups
@@ -77,7 +83,7 @@ class CNTOConquest {
     };
     class Friendly {
         // Base class for all Friendly classes, contains default values. Inherit from this class to enable future expansions.
-        class Tna {
+        class Tna : AIGroup {
             scope = 0; // 0 - not spawned ever, 1 - spawned
             displayName = ""; // name displayed on the screen
             cfgGroupsPath = ""; // path to CfgGroups

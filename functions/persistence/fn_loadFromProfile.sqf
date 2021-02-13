@@ -41,8 +41,7 @@ if (!isNil "_data") then {
     cnto_cq_saved_fortify_credits = 0;
     cnto_cq_saved_fortify_objects = [];
     cnto_cq_saved_renown = 0;
-    cnto_cq_saved_locations = call cnto_cq_fnc_initLocations; // locations must be initialized before forces
-    cnto_cq_saved_friendly_forces = call cnto_cq_fnc_initFriendlyForces;
+    cnto_cq_saved_friendly_forces = [];
     cnto_cq_saved_supply = 0;
 
 };

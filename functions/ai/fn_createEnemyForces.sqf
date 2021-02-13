@@ -9,13 +9,10 @@ private _loc = call cnto_cq_fnc_getLocations;
 
 	/* Check if location controlled by enemy */
 	if (_owner == 0) then {
-		private _position = getMarkerPos _x;
 		private _numberOfUnits = round random [_minUnits, (_minUnits+_maxUnits)/2, _maxUnits];
 		
 		for "_i" from 1 to _numberOfUnits do {
-			private _group = [_position, _size, _threatLevel] call cnto_cq_fnc_createEnemyGroup;
-			[_group] call CBA_fnc_taskDefend;
-			_group enableDynamicSimulation true;
+			[_x, _size, _threatLevel] call cnto_cq_fnc_createEnemyGroup;
 		};
 	};
 } forEach _loc;
