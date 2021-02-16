@@ -11,7 +11,7 @@ private _initCode = getText (_selectedGroup >> "init");
 
 private _aiGroup = createHashMap;
 
-_aiGroup set ["type", _selectedGroup];
+_aiGroup set ["type", configName _selectedGroup];
 _aiGroup set ["position", _randomPos];
 _aiGroup set ["side", east];
 _aiGroup set ["attachedToMarker", _marker];

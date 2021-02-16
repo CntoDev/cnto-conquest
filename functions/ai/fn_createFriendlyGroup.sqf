@@ -9,7 +9,7 @@ private _randomPos = (getMarkerPos _marker) getPos [random _size, random 360];
 /* Initialize AI group "object". Some properties are likely unneeded but what the hell. */
 private _aiGroup = createHashMap;
 
-_aiGroup set ["type", _friendlyConfig];
+_aiGroup set ["type", configName _friendlyConfig];
 _aiGroup set ["position", _randomPos];
 _aiGroup set ["side", west];
 _aiGroup set ["attachedToMarker", _marker];
