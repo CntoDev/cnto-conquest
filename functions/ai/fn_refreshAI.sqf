@@ -9,8 +9,5 @@ if (!isServer) exitWith {};
 	[_x] call compile _destroyIf;
 } forEach (cnto_cq_saved_friendly_forces + cnto_cq_enemy_forces);
 
-private _friendliesToDelete = cnto_cq_saved_friendly_forces select { _x getOrDefault ["gc", false] };
-private _enemiesToDelete = cnto_cq_enemy_forces select { _x getOrDefault ["gc", false] };
-
-cnto_cq_saved_friendly_forces deleteRange _friendliesToDelete;
-cnto_cq_enemy_forces deleteRange _enemiesToDelete;
+cnto_cq_saved_friendly_forces = cnto_cq_saved_friendly_forces select { !(_x getOrDefault ["gc", false]) };
+cnto_cq_enemy_forces = cnto_cq_enemy_forces select { !(_x getOrDefault ["gc", false]) };
