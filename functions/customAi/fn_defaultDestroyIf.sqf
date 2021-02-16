@@ -24,6 +24,8 @@ private _playersInArea = (allPlayers select {alive _x}) inAreaArray [_position, 
 
 if (count _playersInArea == 0) then {
 	/* there are no players in area, despawn */
+	_unit set ["position", _position];
+	
 	private _vehicles = [];
 
 	{
