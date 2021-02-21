@@ -44,6 +44,20 @@ class CfgFunctions {
             class defaultCreateIf;
             class defaultDestroyIf;
         };
+        class armory {
+            class purchaseUnits;
+        };
+    };
+    class cnto_ui {
+        class ui {
+            file = "functions\ui";
+            class initBuilder;
+            class hasCombo;
+            class withArgument;
+            class onSuccess;
+            class onCancel;
+            class showDialog;
+        };
     };
 };
 
